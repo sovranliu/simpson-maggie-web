@@ -1,0 +1,16 @@
+var contentType = context.get('contentType');
+if(null == contentType) {
+    contentType = 'application/json';
+}
+if(-1 != contentType.indexOf('application/json')) {
+    context.set('redirect', context.get('url'));
+    return 'success.json';
+}
+else if(-1 != contentType.indexOf('application/javascript')) {
+    context.set('url', context.get('url'));
+    return 'location.js';
+}
+else {
+    context.set('url', context.get('url'));
+    return 'redirect.url';
+}

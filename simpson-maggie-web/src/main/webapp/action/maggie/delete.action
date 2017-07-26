@@ -1,0 +1,14 @@
+var path = context.parameter("path");
+if(null == path) {
+	context.set('code', '-2');
+	context.set('msg', '参数丢失');
+	return 'fail.json';
+}
+if($('maggieConsoleService').delete(path)) {
+	return 'success.json';
+}
+else {
+	context.set('code', '-1');
+	context.set('msg', '内部错误');
+	return 'fail.json';
+}

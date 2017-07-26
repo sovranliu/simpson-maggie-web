@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/' >
+    <appender name="simpsonConsole" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS\} %-5p] [%t] %c{2\} - %m%n" />
+        </layout>
+    </appender>
+    <appender name="simpsonFile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/apps/logs/simpson-maggie-web/web/app.log" />
+        <param name="DatePattern" value="'.'MM-dd'.log'"></param>
+        <param name="Append" value="true" />
+        <param name="MaxBackupIndex" value="10" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{MM-dd HH:mm:ss,SSS} %p [%c] %m%n" />
+        </layout>
+    </appender>
+    <root>
+        <priority value ="info"/>
+        <appender-ref ref="simpsonConsole"/>
+        <appender-ref ref="simpsonFile"/>
+    </root>
+</log4j:configuration>

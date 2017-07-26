@@ -1,0 +1,16 @@
+var path = context.parameter("path");
+var content = context.parameter("content");
+if(null == path || null == content) {
+	context.set('code', '-2');
+	context.set('msg', '参数丢失');
+	return 'fail.json';
+}
+var v = $('maggieConsoleService').add(path, content);
+if($('maggieConsoleService').add(path, content)) {
+	return 'success.json';
+}
+else {
+	context.set('code', '-1');
+	context.set('msg', '内部错误');
+	return 'fail.json';
+}

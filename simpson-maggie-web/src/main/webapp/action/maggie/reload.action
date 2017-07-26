@@ -1,0 +1,9 @@
+var path = context.parameter("path");
+if($('maggieConsoleService').reload(path)) {
+	return 'success.json';
+}
+else {
+	context.set('code', '-1');
+	context.set('msg', '内部错误');
+	return 'fail.json';
+}

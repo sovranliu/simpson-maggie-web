@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class=" ">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title>Simpson Maggie 模拟平台</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body class=" ">
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid padd30">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		    	<image src="images/logo.jpg" class="logo">
+	    		<h4>Simpson Maggie 接口模拟平台</h4>
+			</div>
+				</ul>
+		    <div class="collapse navbar-collapse navbar-wrap" id="bs-example-navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class=""><a href="#"><span class="glyphicon glyphicon glyphicon-cog" aria-hidden="true"></span> 配置</a></li>
+					<li><a href="help.html"><span class="glyphicon glyphicon glyphicon glyphicon-list-alt" aria-hidden="true"></span> 帮助</a></li>
+				</ul>
+		    </div>
+		  </div><!-- /.container-fluid -->
+		</nav>
+        <div class="container-fluid padd30">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="breadcrumb-wrap">
+						<ul class="breadcrumb">
+							<li><a href="/">Home</a></li>
+						</ul>
+						<a id="modal" role="button" data-toggle="modal" data-target="#AddModal" class="js-add" type="button">Create</a>
+					</div>
+					<table class="js-table table table-striped table-bordered">
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="content_outer">
+	        <div class="inner">
+	            <ul class="footer_ul">   
+	                <li><img src="images/logo.png" alt=""></li>  
+	                <li>©兴业证券股份有限公司 版权所有    兴网备案/许可证编号：闽ICP备11005977号</li>
+	                <li>兴业证券 研发团队</li>
+	            </ul>
+	        </div>
+	    </div>
+		<div class="modal fade" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel"></h4>
+					</div>
+					<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="email" class="js-url form-control"  placeholder="路径">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<textarea style="height: 300px" class="js-modal form-control" placeholder="模板"></textarea>
+							</div>
+						</div>
+					</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="js-submit btn btn-primary">保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="DelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">删除</h4>
+					</div>
+					<div class="modal-body">
+						<p>确认删除路径：<span class="js-url-del"></span>	吗？</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="js-submit btn btn-primary">确认</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-2.0.min.js" type="text/javascript"></script> 
+        <script src="js/bootstrap.min.js" type="text/javascript"></script> 
+        <script src="js/index.js" type="text/javascript"></script>
+    </body>
+</html>

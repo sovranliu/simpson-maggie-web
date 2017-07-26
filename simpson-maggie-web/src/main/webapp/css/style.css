@@ -1,0 +1,127 @@
+a{
+	color: #333;
+}
+ul,li{
+	padding: 0;
+	margin:0;
+	list-style: none;
+}
+.helppage li{
+	list-style: disc;
+}
+.padd30{
+	padding: 0 30px;
+}
+.logo{
+	width: 13%;
+	margin-left: 20px;
+}
+.navbar-default{
+	background: #fff;
+	border:none;
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+.navbar-default h4{
+	color: #666;
+	display: inline-block;
+}
+.navbar-default .navbar-wrap{
+	float: right;
+	margin-top: 8px;
+}
+.navbar-default .navbar-nav>li>a{
+	text-transform: uppercase;
+    font-weight: 300;
+    font-size: 1em;
+	color: #292723;
+    -webkit-transition: line-height 0.3s linear;
+    -moz-transition: line-height 0.3s linear;
+    -o-transition: line-height 0.3s linear;
+    -ms-transition: line-height 0.3s linear;
+    transition: line-height 0.3s linear;
+    padding: 8px 5px;
+    margin: 0 20px;
+    position: relative;
+}
+.navbar-default .navbar-nav>li>a:before{
+	-webkit-transition: width 0.3s linear;
+    -moz-transition: width 0.3s linear;
+    -o-transition: width 0.3s linear;
+    -ms-transition: width 0.3s linear;
+    transition: width 0.3s linear;
+    height: 1px;
+    width: 0;
+    background-color: #5087F8;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    content: "";
+}
+.navbar-default .navbar-nav>li>a{
+    background-color: transparent;
+}
+.navbar-default .navbar-nav>li>a:hover{
+	background-color:transparent!important;
+	border-bottom: 1px solid #E6E6E6;
+	color: #5087F8;
+}
+.navbar-default .navbar-nav>li>a:hover:before{
+	width: 100%;
+}
+.breadcrumb-wrap{
+	position: relative;
+	font-weight: 800;
+}
+.breadcrumb li:hover{
+	color: #5087F8;
+	cursor: pointer;
+}
+.js-add{
+	position: absolute;
+	right: 10px;
+	top:8px;
+}
+.js-edit{
+	margin-right: 10px;
+}
+.js-table .sort,.js-table .operate{
+	width: 5%;
+	text-align: center;
+}
+.js-table .operate a{
+	font-weight: 800;
+	text-decoration: none;
+}
+.js-table .operate a:hover{
+	cursor: pointer;
+}
+.js-view:hover,.gotoLink:hover{
+	color: #5087F8;
+	cursor: pointer;
+}
+.table>tbody>tr>td{
+	vertical-align: middle;
+}
+.border-panel{
+	margin: 10px 30px;
+    padding-top: 20px;
+	border:#ddd solid 1px;
+}
+.content_outer {
+	font-size: 12px;
+    width: 960px;
+    margin: 0 auto;
+}
+.inner {
+    padding: 10px 20px;
+    height: 1%;
+    zoom: 1;
+    /* overflow: hidden; */
+}
+.footer_ul {
+    text-align: center;
+}
+.footer_ul li img{
+	width: 15%;
+}

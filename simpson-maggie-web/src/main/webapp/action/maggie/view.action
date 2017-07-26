@@ -1,0 +1,4 @@
+var path = context.parameter("path");
+var content = $('maggieConsoleService').view(path);
+context.set('content', content);
+return 'text.txt';

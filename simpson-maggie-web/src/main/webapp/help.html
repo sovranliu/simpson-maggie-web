@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title>Simpson Maggie 模拟平台</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body class="">
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid padd30">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		    	<image src="images/logo.jpg" class="logo">
+	    		<h4>Simpson Maggie 接口模拟平台</h4>
+			</div>
+				</ul>
+		    <div class="collapse navbar-collapse navbar-wrap" id="bs-example-navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class=""><a href="index.html"><span class="glyphicon glyphicon glyphicon-cog" aria-hidden="true"></span> 配置</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon glyphicon glyphicon-list-alt" aria-hidden="true"></span> 帮助</a></li>
+				</ul>
+		    </div>
+		  </div><!-- /.container-fluid -->
+		</nav>
+        <div class="container-fluid padd30 border-panel">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">平台简介</h3>
+			  </div>
+			  <div class="panel-body">
+			    Simpson Maggie 是一款模拟接口的平台，可Mock指定URL的HTTP接口和指定名称的微服务接口，主要用于向移动端和前端在服务端接口尚未就绪的情况下提供调试和测试的服务。
+				用户可以配置指定路径返回内容模板，其中模板采用Velocity模板。为便于测试本地H5，所有Mock接口均支持跨域访问。<br /><br />
+				本平台由<b>兴业证券</b>研发团队提供技术支持。
+			  </div>
+			</div>
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">简单范例</h3>
+			  </div>
+			  <div class="panel-body">
+			    实现/demo/helloWorld路径返回一个简单的html文档。
+<xmp>
+<html>
+<body>
+	<p>你好世界</p>
+</body>
+</html>
+</xmp>
+<ul class="helppage" style="-webkit-padding-start:15px">
+<li>进入配置页，点击Create按钮</li>
+<li>在弹出层中的路径输入框输入/demo/helloWorld.html，其中.html后缀表示本接口返回的是html文档</li>
+<li>在模板中输入接口返回的html文档Velocity模板，本例可直接录入原文本</li>
+<li>点击保存可立即生效</li>
+<li>可在导航栏中点击Home找到下方列表中的demo目录</li>
+<li>点击demo目录可在下方列表中找到helloWorld.html文件</li>
+<li>点击helloWorld.html文件即可在新窗口中查看该路径的效果，亦可直接在浏览器中输入路径访问该页面</li>
+</ul>
+			  </div>
+			</div>
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+				<h3 class="panel-title">Content-Type</h3>
+			  </div>
+			  <div class="panel-body">
+				若要返回json则命名路径的后缀名为xxx.json，实际访问时不需要加上.json后缀，若希望直接访问的路径包含例如a.html，则录入的路径字符串应当为a.html.html。
+				此外，平台还支持xml,text等返回内容格式。
+			</div>
+		</div>
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+				<h3 class="panel-title">变量</h3>
+			  </div>
+			  <div class="panel-body">
+				录入的接口返回内容可直接获取请求中包含的POST/GET参数。例如，针对访问路径/demo/helloJson?p=123，配置的内容范例：
+<xmp>
+{
+    "code": 0,
+    "msg": "收到的参数是${p}"
+}
+</xmp>
+Velocity模板包含支持条件/循环等语法，在变量的支持下可以生产较灵活的结果。
+			</div>
+		</div>
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+			<h3 class="panel-title">控制器支持</h3>
+		  </div>
+		  <div class="panel-body">
+			某些接口在测试过程中希望模拟行为包含控制逻辑，而非固定的View模板，因此Maggie实现了基于JS的Controller能力。简单范例：<br /><br />加法计算 /demo/add?a=1&amp;b=2<br />
+			录入结果模板路径：/demo/result.html，录入内容：
+<xmp>
+<html>
+<body>
+	<p>${a} + ${b} = ${c}</p>
+</body>
+</html>
+</xmp>
+录入计算接口路径：/demo/add.action，此处必须为.action后缀，表示该路径支持一段JS动作。JS动作返回结果为输出渲染模板路径。
+
+范例：
+<xmp>
+// 从请求上下文中获取参数
+var a = parseInt(context.parameterTypes.get('a'));
+var b = parseInt(context.parameterTypes.get('b'));
+var c = a + b;
+// 设置渲染模板中需要传入的参数，注：经过Controller之后，HTTP请求参数不再自动注入到渲染模板中，需要手动传入
+context.set('a', a);
+context.set('b', b);
+context.set('b', c);
+// 返回渲染模板
+return '/demo/result.html';
+</xmp>
+录入上述两个接口完毕后访问/demo/add?a=1&amp;b=2，可见浏览器输出结果为：
+<xmp>
+1 + 2 = 3
+</xmp>
+录入计算接口路径：/demo/add.action，此处必须为.action后缀，表示该路径支持一段JS动作。JS动作返回结果为输出渲染模板路径。
+
+		  </div>
+		</div>
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Action中内置对象</h3>
+			  </div>
+			  <div class="panel-body">
+<b>visitor</b>
+<xmp>
+
+    /**
+     * 获取指定名称的属性
+     *
+     * @param name 属性名称
+     * @return 属性值
+     */
+    public Object attribute(String name);
+	
+    /**
+     * 设置指定名称的属性
+     *
+     * @param name 属性名称
+     * @param value 属性值
+     */
+    public void setAttribute(String name, Object value);
+	
+    /**
+     * 设置Cookie
+     *
+     * @param key 键
+     * @param value 值
+     */
+    public void setCookie(String key, String value);
+
+    /**
+     * 设置Cookie
+     *
+     * @param key 键
+     * @param value 值
+     * @param expiry 周期
+     */
+    public void setCookie(String key, String value, int expiry);
+
+    /**
+     * 写入
+     *
+     * @param data 数据
+     */
+    public void write(String data) throws Exception;
+	
+    /**
+     * 添加头
+     *
+     * @param name 头名称
+     * @param value 头值
+     */
+    public void addHeader(String name, String value);
+
+    /**
+     * 设置内容格式
+     *
+     * @param contentType 内容格式
+     */
+    public void setContentType(String contentType);
+
+</xmp>
+<b>context</b>
+<xmp>
+    /**
+     * Cookie信息
+     */
+    public Table<String, String> cookie = new Table<String, String>();
+    /**
+     * 参数
+     */
+    public Table<String, Object> parameterTypes = new Table<String, Object>();
+	
+    /**
+     * 日志
+     *
+     * @param log 日志内容
+     */
+    public void log(Object log);
+
+    /**
+     * 获取上下文中的参数
+     *
+     * @param key 键
+     * @return 值
+     */
+    public Object get(String key);
+
+    /**
+     * 在上下文中设值
+     *
+     * @param key 键
+     * @param value 值
+     */
+    public void put(String key, Object value);
+
+    /**
+     * 在上下文中设值
+     *
+     * @param key 键
+     * @param value 值
+     */
+    public void set(String key, Object value);
+	
+    /**
+     * 获取带参数的路径
+     *
+     * @return 带参数的路径
+     */
+    public String uri();
+</xmp>
+			  </div>
+			</div>
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">路径匹配</h3>
+			  </div>
+			  <div class="panel-body">
+			    请求路径可能为可变URL，例如/demo/search/1/2，URL并非按照固定路径设置，因此Maggie设计了上翻查找机制来满足该场景需求。当用户访问/demo/search/1/2路径时，系统首先检查/demo/search/1/目录下是否存在以2为命名的带后缀文件，如果不存在则系统会自动访问路径为/demo/search/1/route.action的控制器，若该控制器也不存在则系统会上翻路径，尝试请求/demo/search/route.action。
+				同理，若不存在则继续上翻，最终至/route.action。若根目录也不存在则系统返回404。本例可尝试录入/demo/search/route.action，并且在此文件中通过context.uri()方法获取实际请求的url，并执行自定义逻辑操作。
+			  </div>
+			</div>
+		
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">技术支持</h3>
+			  </div>
+			  <div class="panel-body">
+Simpson Maggie另支持#include<>，function等语法糖，用于实现引用外部action文件和系统内部java文件。<br />
+整个Maggie的控制台实际也是一个Controller集，有兴趣可以查看/maggie目录下的action文件。<br /><br />
+			    如使用过程中有疑问请联系：<b>liujunit@xyzq.com.cn</b> 
+			  </div>
+			</div>
+			</div>
+			<div class="content_outer">
+		        <div class="inner">
+		            <ul class="footer_ul"> 
+		            	<li><img src="images/logo.png" alt=""></li>  
+		                <li>©兴业证券股份有限公司 版权所有    兴网备案/许可证编号：闽ICP备11005977号</li>
+		                <li>兴业证券 研发团队</li>
+		            </ul>
+		        </div>
+		    </div>
+		<script src="js/jquery-2.0.min.js" type="text/javascript"></script> 
+        <script src="js/bootstrap.min.js" type="text/javascript"></script> 
+        <script src="js/index.js" type="text/javascript"></script>
+    </body>
+</html>
+
+
+
