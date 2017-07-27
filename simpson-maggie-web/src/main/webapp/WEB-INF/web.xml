@@ -34,7 +34,7 @@
 		</init-param>
 		<init-param>
 			<param-name>packageBase</param-name>
-			<param-value>com.xyzq.kid.action</param-value>
+			<param-value>com.xyzq.kid</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>

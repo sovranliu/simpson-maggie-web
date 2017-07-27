@@ -206,7 +206,14 @@ public class MaggieActionDispatcher extends ActionDispatcher implements IClassAc
         if(Text.isBlank(packageBase)) {
             return true;
         }
-        List<String> clazzList = Kind.findClass(packageBase);
+        List<String> clazzList = null;
+        try {
+            clazzList = Kind.findClass(packageBase);
+        }
+        catch (IOException e) {
+            logger.error("load package class failed, package = " + packageBase, e);
+            return false;
+        }
         for(String clazzName : clazzList) {
             if(clazzName.contains("$")) {
                 continue;

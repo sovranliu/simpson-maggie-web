@@ -106,6 +106,16 @@
             <artifactId>kid-portal-maggie</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.slfuture.kid</groupId>
+            <artifactId>kid-wechat-maggie</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.slfuture.kid</groupId>
+            <artifactId>kid-console-maggie</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
