@@ -3,6 +3,10 @@
 	"code":-1#else
 	"code":$code#end
 #if($msg),
-	"msg":"$msg"#end
+"msg":"$msg"#end
+#if($action),
+"action":"$action"#end
+#if($redirect),
+"redirect":"$redirect"#end
 
 }
