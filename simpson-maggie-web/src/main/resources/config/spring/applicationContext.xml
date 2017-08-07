@@ -12,6 +12,7 @@
 
     <!-- 动态配置对Spring支持 -->
     <bean name="bartPlaceholderConfigurer" class="com.xyzq.simpson.bart.client.spring.BartPlaceholderConfigurer">
+        <property name="fileEncoding" value="UTF-8"></property>
         <property name="locations" value="classpath*:config/app.properties"></property>
     </bean>
     <!-- Maggie对Spring Bean支持 -->
