@@ -378,6 +378,7 @@ public class MaggieActionDispatcher extends ActionDispatcher implements IClassAc
         if(file.exists() && file.isDirectory()) {
             for(File item : file.listFiles()) {
                 if(!loadScript(item)) {
+                    logger.error("load script failed, file = " + item.getAbsolutePath());
                     return false;
                 }
             }
@@ -402,7 +403,8 @@ public class MaggieActionDispatcher extends ActionDispatcher implements IClassAc
     public boolean loadAction(String path, File file) throws IOException {
         int i = path.lastIndexOf(".");
         if(-1 == i) {
-            return false;
+            logger.warn("load action file failed, path = " + path + ", file = " + file.getAbsolutePath());
+            return true;
         }
         String suffix = path.substring(i + 1);
         String uri = path.substring(0, i).replace("\\", "/");
